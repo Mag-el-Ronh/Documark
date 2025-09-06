@@ -1,0 +1,103 @@
+<! DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<link rel="stylesheet" type="text/css" href="style_01.css">
+</head>
+<body>
+    
+<header>
+    <h1 class="Title">Dummy Seater Project - Documentation</h1>
+    <p> Date: None<br>
+    Author: daniel
+    </p>
+    <p>Digital model preparation by positioning of crash test dummy on 
+    car seat to prepare crash scenario simulations.</p>
+</header>
+<div>
+ <article>
+<h1>Notizen zur Umsetzung von Markdown in Commonmark.js</h1>
+<p>Offizielle Website: <a href="http://commonmark.org/">http://commonmark.org/</a></p>
+<p>GitHub von CommonMark: https://github.com/jgm/CommonMark  /<br />
+Github von commonmark.js: https://github.com/jgm/commonmark.js/README.md with link to--&gt; http://spec.commonmark.org/js/commonmark.js</p>
+<blockquote>
+<p>src=&quot;http://spec.commonmark.org/js/commonmark.js&quot;</p>
+</blockquote>
+<h1>MathJax</h1>
+<h2>Integration into</h2>
+<h3>HTML</h3>
+<ul>
+<li>all MathJax v4 subverions</li>
+</ul>
+<blockquote>
+<p>&lt;!= script id=&quot;MathJax-script&quot; async src=&quot;https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js&quot;&gt;</p>
+</blockquote>
+<ul>
+<li>for a special subversion number</li>
+</ul>
+<blockquote>
+<p>&lt;!= script id=&quot;MathJax-script&quot; async src=&quot;https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js&quot;&gt;</p>
+</blockquote>
+<h3>Server installation with Markdown or Latex support</h3>
+<p>node.js istallation [ https://www.mathjax.org/#installnow ]</p>
+<blockquote>
+<p>npm install mathjax</p>
+</blockquote>
+<h1>Notepad++</h1>
+<h2>Run Command (F5)</h2>
+<h3>HTML - Open in Firefox</h3>
+<blockquote>
+<p>firefox &quot;$(FULL_CURRENT_PATH)&quot;</p>
+</blockquote>
+
+ <\article
+> <article>
+<h1>How to use commonmark in scripts</h1>
+<h2>use python commonmark library as site_package</h2>
+<p>python commonmark is ported from original commonmarks.js  javascript</p>
+<p>use python virtual env. debugging with python3.13</p>
+<blockquote>
+<p>conda activate md</p>
+</blockquote>
+<p>install common mark in virtual env</p>
+<blockquote>
+<p>(md)$ pip install commonmark</p>
+</blockquote>
+<h2>original commonmark.js mit Node.js benutzen um beipiel.md in html umzuwandeln</h2>
+<ul>
+<li>Install node.js</li>
+</ul>
+<blockquote>
+<p>$ pacman -S nvm
+$ source /usr/share/nvm/init-nvm.sh
+$ nvm install --lts</p>
+</blockquote>
+<ul>
+<li>neues NodeJs Projekt mit npm anlegen:</li>
+</ul>
+<blockquote>
+<p>$ mkdir commonmark-projekt
+$ cd commonmark-projekt
+$ npm init -y</p>
+</blockquote>
+<ul>
+<li>commonmark installieren:</li>
+</ul>
+<blockquote>
+<p>$ npm install commonmark</p>
+</blockquote>
+<ul>
+<li>beispiel.md konvertieren mit konvertiere_beispiel_md2html.j</li>
+</ul>
+<blockquote>
+<p>$ node konvertiere_beispiel_md2html.js</p>
+</blockquote>
+<ul>
+<li>generierter HTML-Code wird im Terminal/Console ausgegeben</li>
+</ul>
+
+ <\article
+>
+</div>
+</body>
+</html>

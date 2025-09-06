@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dummy, Seat & Belt Positioning Automation</title>
+  <link rel="stylesheet" href="style_01.css">
+  
+</head>
+<body>
+
+  <!-- Crash Load Case — Knee Mapping & Impact Evaluation (Setup) 
+  <div class="slide compact" style="background: url('images/Knee-impact-setup.png') no-repeat center center / contain;">
+  -->
+  <div class="slide compact" style="background: url('images/Knee-impact-setup.png') no-repeat; background-size: 340px auto; background-position: 99% 550px">
+    <h2>Crash Load Case — Knee Mapping & Impact Evaluation (Setup)</h2>
+  
+    <h3>Purpose</h3>
+    <ul>
+      <li>Prepare FE model for Euro NCAP-compliant lower-body impact evaluation</li>
+      <li>Ensure realistic occupant positioning and restraint system configuration</li>
+    </ul>
+  
+    <h3>Dummy, Seat & Seatbelt Setup</h3>
+    <ul>
+      <li><strong>Seat:</strong> Import and align seat geometry with correct H-point & seating posture via ANSA/VE</li>
+      <li><strong>Virtual Dummy:</strong> Position ATD H395% driver side & ATD H350/95% passenger side per EU NCAP via VE</li>
+      <li><strong>Seatbelt:</strong> Model retractor, pretensioner, and anchor points; verify routing over dummy | referenced in Belt-Module</li>
+      <li><strong>Preloading:</strong> Apply initial belt tension and dummy settling via VE, ProDSiG & Belt-Module tools</li>
+    </ul>
+  
+    <h3>Boundary Conditions</h3>
+    <ul>
+      <li>Vehicle model fixed at global mounts; surrounding structure included for realistic load paths</li>
+      <li>Define initial velocity and either standard or test pulse loading</li>
+      <li>Airbag modules activated for knee-mapping</li>
+    </ul>
+  
+    <h3>Pre-Run Checks</h3>
+    <ul>
+      <li>Dummy contact definitions (skin-to-dashboard, knees-to-lower dashboard)</li>
+      <li>Seatbelt retraction and pretension behavior under initial load step</li>
+      <li>Ensure all sensors/channels (femur force, pelvis displacement) are active</li>
+    </ul>
+    <div style="position: absolute; bottom: 10px; right: 10px; font-size: 0.7em; color: rgba(0,0,0,0.5);">
+      Image Source: MDPI/Applied Sciences (2020)
+    </div>
+  </div>
+
+  <!-- Dummy, Seat & Belt Positioning Automation -->
+  <div class="slide compact" style="background: url('images/Knee-impact-setup.png') no-repeat; background-size: 340px auto; background-position: 99% 550px">
+    <h2>Dummy, Seat & Belt Positioning Automation</h2>
+    <h3>Goal</h3>
+    <ul>
+      <li>Automate realistic occupant positioning and restraint system setup for crash simulations.</li>
+      <li>Ensure reproducibility and regulatory compliance (e.g., Euro NCAP).</li>
+    </ul>
+  
+    <h3>Step Overview</h3>
+    <ul>
+      <li><strong>🧍 Dummy Positioning:</strong> Align dummy H-point and posture using VE/ANSA. Apply anthropometric rules and validate anatomical alignment.</li>
+      <li><strong>🪑 Seat Preloading:</strong> Simulate gravity-based settling of dummy on seat via quasi-static analysis. Capture seat deformation and contact forces.</li>
+      <li><strong>🔗 Belt System Setup (Parametric):</strong> Model retractor, buckle, anchor points, and webbing using shell/beam elements.
+        <ul>
+          <li>Use parameter-driven inputs for layout and routing.</li>
+          <li>Apply initial tension (20–50 N) and define contact/friction with dummy.</li>
+          <li>Automate geometry creation and meshing via Belt-Module, VE, or Python scripts.</li>
+        </ul>
+      </li>
+    </ul>
+  
+    <h3>Tools Referenced</h3>
+    <ul>
+      <li>VE, ProDSiG, Belt-Module, ANSA</li>
+    </ul>
+  </div>
+  
+  <!-- Step 1: Dummy on Seat Positioning -->
+  <div class="slide compact">
+    <h2>🧍 Step 1: Dummy on Seat Positioning</h2>
+    <h3>Goal</h3>
+    <ul>
+      <li>Position the virtual dummy on the seat with anatomically correct posture and regulatory alignment.</li>
+    </ul>
+  
+    <h3>Sub-steps</h3>
+    <ul>
+      <li><strong>Extract Seat Reference Geometry:</strong> Identify H-point, cushion surface, and backrest orientation.</li>
+      <li><strong>Align Dummy Pelvis & Torso:</strong> Position pelvis at H-point and orient torso and limbs based on seat angles and posture rules.</li>
+      <li><strong>Apply Posture Rules:</strong> Use anthropometric data and regulation specs (e.g., Euro NCAP) to define joint angles and limb placement.</li>
+      <li><strong>Validate Pose:</strong> Check head height, knee angle, and overall alignment. Log positioning metrics for reproducibility.</li>
+    </ul>
+  </div>
+  
+  <!-- Step 2: Seat Preloading -->
+  <div class="slide compact">
+    <h2>🪑 Step 2: Seat Preloading</h2>
+    <h3>Goal</h3>
+    <ul>
+      <li>Simulate realistic seat deformation and occupant settling using a shelf-form Regal dummy.</li>
+      <li>Ensure accurate contact forces and boundary conditions for downstream crash analysis.</li>
+    </ul>
+  
+    <h3>Sub-steps</h3>
+    <ul>
+      <li><strong>Import & Validate Seat Geometry:</strong> Load seat model (cushion, backrest, frame) and verify mesh quality, material setup, and connectivity.</li>
+  
+      <li><strong>Apply Dummy Position from Step 1:</strong> Use Regal dummy in shelf-form configuration. Transfer joint locations and enforce posture via joint constraints or prescribed motion.</li>
+  
+      <li><strong>Activate Gravity & Mass:</strong> Introduce dummy weight and gravity to simulate natural settling. Ensure stable contact with seat surfaces.</li>
+  
+      <li><strong>Contact & Constraint Setup:</strong>  
+        <ul>
+          <li>Define surface-to-surface contact with friction between dummy and seat.</li>
+          <li>Fix seat mounts and apply joint constraints to maintain anatomical posture.</li>
+        </ul>
+      </li>
+  
+      <li><strong>Run Preload Simulation:</strong> Perform quasi-static analysis to capture seat compression and dummy settling. Monitor contact forces and posture evolution.</li>
+  
+      <li><strong>Export Preloaded State:</strong> Save deformed seat and dummy configuration for use in crash setup. Preserve contact and constraint definitions as needed.</li>
+    </ul>
+  </div>
+  
+  <!-- Step 3: Belt Routing and Tensioning -->
+  <div class="slide compact">
+    <h2>🔗 Step 3: Belt Routing and Tensioning</h2>
+  
+    <h3>Goal</h3>
+    <ul>
+      <li>Model realistic seatbelt geometry and apply initial tension for accurate restraint behavior during crash simulation.</li>
+      <li>Ensure routing conforms to dummy posture and regulatory standards (e.g., Euro NCAP).</li>
+    </ul>
+  
+    <h3>Sub-steps</h3>
+    <ul>
+      <li><strong>Import Final Geometry:</strong> Load the <em>preloaded seat</em and the <em>final positioned dummy from Step 2</em>. This ensures accurate contact surfaces and posture alignment.</li>
+  
+      <li><strong>Define Belt System (Parametric):</strong>
+        Model retractor, buckle, anchor points, and webbing using shell and/or beam elements. Include pretensioner and load limiter components if applicable.
+        <ul>
+          <li>Use parameter-driven inputs to define belt layout and component positioning.</li>
+          <li>Specify <em>2D belt geometry length</em> for routing over the dummy surface.</li>
+          <li>Define <em>1D beam-like connectors</em> linking belt ends to anchor and retractor points.</li>
+          <li>Automate geometry creation and meshing via integrated tools or custom scripts (e.g., Belt-Module, VE, Python).</li>
+        </ul>
+      </li>
+  
+      <li><strong>Route Belt over Dummy:</strong> Align belt path over shoulder, chest, and pelvis based on dummy joint positions. Ensure belt lies flush against body without excessive slack or penetration.</li>
+  
+      <li><strong>Apply Initial Tension:</strong> Use pre-tensioning tools to simulate realistic retractor pull-in (e.g., 20–50 N preload). This step ensures proper contact and restraint force buildup.</li>
+  
+      <li><strong>Contact & Constraint Setup:</strong> Define surface-to-surface contact with friction between belt and dummy. Constrain belt ends to retractor and anchor points with appropriate stiffness.</li>
+  
+      <li><strong>Validation & Export:</strong>  
+        <ul>
+          <li>Verify belt routing, tension force, and contact pressure distribution.</li>
+          <li>Export final forms of seat, dummy, and belt system as initial state for crash simulation.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Crash Load Case — Knee Mapping & Impact Evaluation (Analysis) -->
+  <div class="slide compact" style="background: url('images/KM-load-bg.svg') no-repeat; background-size: 700px auto; background-position: 35% 760px">
+    <h2>Crash Load Case — Knee Mapping & Impact Evaluation (Analysis)</h2>
+  
+    <h3>Analysis Overview</h3>
+    <ul>
+      <li>Non-linear transient dynamic simulation of driver and passenger knee impacts</li>
+      <li>Load cases derived from Euro NCAP knee mapping protocols and vehicle-specific scenarios</li>
+      <li>Full occupant restraint system interaction (seat, dummy, seatbelt, airbags) included</li>
+    </ul>
+  
+    <h3>Key Evaluation Metrics</h3>
+    <ul>
+      <li><strong>Femur Force:</strong> Maximum resultant force on femur sensor; must stay ≤ <strong>3.8 kN</strong> (Euro NCAP limit)</li>
+      <li><strong>Knee Displacement & Sliding:</strong> Local penetration/slider displacement at knee impact point; must be ≤ <strong>6 mm</strong></li>
+      <li><strong>Belt Loads & Restraint Response:</strong> Evaluate seatbelt forces, pretensioner activation, and dummy kinematics for compliance</li>
+      <li><strong>Energy Absorption & Plastification:</strong> Confirm local plastic strains within material allowable limits</li>
+    </ul>
+  
+    <h3>Postprocessing & Reporting</h3>
+    <ul>
+      <li>Extract sensor data (forces, accelerations, displacements) at specified channels</li>
+      <li>Generate automated reports comparing results with project and Euro NCAP criteria</li>
+      <li>Identify and highlight any limit exceedances for design iteration</li>
+    </ul>
+  
+    <h3>Outcome & Next Steps</h3>
+    <ul>
+      <li>Pass: Dashboard design approved for production or optimization</li>
+      <li>Fail: Modify design, materials, or restraint setup; re-run analyses</li>
+    </ul>
+  </div>
+  
+</body>
+</html>

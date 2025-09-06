@@ -7,5 +7,5 @@ use commonmark and jinja2 in pythto fill a first html docu draft
 
 1. commonmark
  > $ pip install commonmark
-3.  jinja2
+2.  jinja2
  > $ pip install jinja2

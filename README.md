@@ -11,7 +11,7 @@ use commonmark and jinja2 in pythto fill a first html docu draft
  > $ pip install jinja2
 
 
-## Notizen zur Umsetzung von Markdown in Commonmark.js
+## Reference inforamation from Markdown.pl to modern Commonmark.js
 
 Documark is a python library. For this project is used commonmark (python). Commonmark is a python portation orf reference commonmark.js. commonmarj.js is more consistant and strict than original markdown.pl.
 [talk.commonmark.org/t/mistletoe-a-fast-extensible-commonmark-implementation-in-pure-python](https://talk.commonmark.org/t/mistletoe-a-fast-extensible-commonmark-implementation-in-pure-python/2835)

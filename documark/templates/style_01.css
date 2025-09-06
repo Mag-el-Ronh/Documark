@@ -1,1 +1,89 @@
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      scroll-behavior: smooth;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
 
+    .slide {
+      display: block;
+      position: relative; /* Add this line */
+      height: 100vh;
+      scroll-snap-align: start;
+      padding: 5px 30px;
+      box-sizing: border-box;
+      background-color: #f4f4f4;
+      overflow-y: auto;
+      font-size: 1.2em;
+      border-radius: 16px;
+      margin: 10px auto;
+      max-width: 900px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      color: #333;
+    }
+
+    .slide.compact {
+      font-size: 1.0em;
+      padding: 5px 30px;
+    }
+  
+    h1, h2, h3, h4 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+  
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      line-height: 1.6;
+    }
+  
+    ul li {
+      margin-bottom: 12px;
+      padding-left: 24px;
+      position: relative;
+    }
+  
+    ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #555;
+      font-size: 1.5em;
+      line-height: 1;
+    }
+  
+    @media print {
+      html, body {
+        height: auto;
+        overflow: visible;
+      }
+    
+      .slide {
+        height: auto !important;
+        page-break-after: always;
+        box-shadow: none;
+        margin: 0;
+        border-radius: 0;
+        background-position: top right !important;
+        background-size: 300px auto !important;
+      }
+    
+      .slide.compact {
+        font-size: 1em;
+        padding: 20px;
+      }
+    
+      /* Optional: Hide navigation buttons or other screen-only elements */
+      .nav, button {
+        display: none !important;
+      }
+    }
+
+
+  </style>

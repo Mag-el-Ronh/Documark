@@ -41,3 +41,8 @@ node.js istallation [ https://www.mathjax.org/#installnow ]
 
 * HTML - terminal bash command to show in Firefox:
 > firefox "$(FULL_CURRENT_PATH)"
+
+
+# Alterantivly use Sphinx documentation library
+
+* [sphinx-doc.org](https://www.sphinx-doc.org/en/master/)
